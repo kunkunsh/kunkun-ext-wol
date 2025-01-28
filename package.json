@@ -1,9 +1,13 @@
 {
   "$schema": "https://schema.kunkun.sh",
   "name": "kunkun-ext-wol",
-  "version": "0.0.6",
+  "version": "0.0.7",
   "license": "MIT",
   "type": "module",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/kunkunsh/kunkun-ext-wol"
+  },
   "kunkun": {
     "name": "Wake On Lan",
     "shortDescription": "Wake On Lan",
@@ -15,12 +19,6 @@
         "allow": [
           {
             "path": "$EXTENSION/deno-src/index.ts",
-            "env": "*",
-            "ffi": "*",
-            "read": "*",
-            "write": "*",
-            "sys": "*",
-            "run": "*",
             "net": "*"
           }
         ]

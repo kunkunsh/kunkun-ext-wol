@@ -30,14 +30,7 @@ async function getRpcAPI() {
     "$EXTENSION/deno-src/index.ts",
     [],
     {
-      allowAllEnv: true,
-      allowAllFfi: true,
-      allowAllRead: true,
-      allowAllWrite: true,
-      allowAllSys: true,
-      allowAllRun: true,
       allowAllNet: true,
-      cwd: downloadDir,
     },
     {}
   );
