@@ -99,6 +99,7 @@ class WakeOnLan extends WorkerExtension {
             description: `Host ${action.name} deleted`,
           });
           this.hosts = this.hosts.filter((host) => host.id !== host.id);
+          this.load();
         });
       } else {
         toast.error("Host not found", {
