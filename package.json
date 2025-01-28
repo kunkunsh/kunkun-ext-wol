@@ -5,24 +5,45 @@
   "license": "MIT",
   "type": "module",
   "kunkun": {
-    "name": "TODO: Extension Display Name",
-    "shortDescription": "A Worker Extension Template",
-    "longDescription": "A Worker Extension Template",
+    "name": "Wake On Lan",
+    "shortDescription": "Wake On Lan",
+    "longDescription": "Wake On Lan",
     "identifier": "kunkun-ext-wol",
     "permissions": [
-      "fetch:all",
-      "clipboard:read-all"
+      {
+        "permission": "shell:deno:spawn",
+        "allow": [
+          {
+            "path": "$EXTENSION/deno-src/index.ts",
+            "env": "*",
+            "ffi": "*",
+            "read": "*",
+            "write": "*",
+            "sys": "*",
+            "run": "*",
+            "net": "*"
+          }
+        ]
+      },
+      "shell:stdin-write",
+      "shell:kill"
     ],
     "demoImages": [],
     "icon": {
       "type": "iconify",
-      "value": "material-symbols:extension"
+      "value": "arcticons:wakeonlan",
+      "hexColor": "#ffff00"
     },
     "customUiCmds": [],
     "templateUiCmds": [
       {
-        "name": "TODO: Template Command Display Name",
-        "main": "dist/index.js",
+        "name": "Add Wake On Lan Host",
+        "main": "dist/add.js",
+        "cmds": []
+      },
+      {
+        "name": "Wake On Lan",
+        "main": "dist/wake.js",
         "cmds": []
       }
     ]
@@ -33,7 +54,8 @@
   },
   "dependencies": {
     "@kksh/api": "0.0.55",
-    "i18next": "^23.15.1"
+    "i18next": "^23.15.1",
+    "valibot": "^1.0.0-beta.14"
   },
   "devDependencies": {
     "@types/bun": "latest"

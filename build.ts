@@ -1,30 +1,30 @@
-import { watch } from "fs"
-import { join } from "path"
-import { refreshTemplateWorkerExtension } from "@kksh/api/dev"
-import { $ } from "bun"
+import { watch } from "fs";
+import { join } from "path";
+import { refreshTemplateWorkerExtension } from "@kksh/api/dev";
+import { $ } from "bun";
 
-const entrypoints = ["./src/index.ts"]
+const entrypoints = ["./src/add.ts", "./src/wake.ts"];
 
 async function build() {
-	try {
-		for (const entrypoint of entrypoints) {
-			await $`bun build --minify --target=browser --outdir=./dist ${entrypoint}`
-		}
-		if (Bun.argv.includes("dev")) {
-			await refreshTemplateWorkerExtension()
-		}
-	} catch (error) {
-		console.error(error)
-	}
+  try {
+    for (const entrypoint of entrypoints) {
+      await $`bun build --minify --target=browser --outdir=./dist ${entrypoint}`;
+    }
+    if (Bun.argv.includes("dev")) {
+      await refreshTemplateWorkerExtension();
+    }
+  } catch (error) {
+    console.error(error);
+  }
 }
 
-const srcDir = join(import.meta.dir, "src")
+const srcDir = join(import.meta.dir, "src");
 
-await build()
+await build();
 
 if (Bun.argv.includes("dev")) {
-	console.log(`Watching ${srcDir} for changes...`)
-	watch(srcDir, { recursive: true }, async (event, filename) => {
-		await build()
-	})
+  console.log(`Watching ${srcDir} for changes...`);
+  watch(srcDir, { recursive: true }, async (event, filename) => {
+    await build();
+  });
 }

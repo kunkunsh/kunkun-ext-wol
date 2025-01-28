@@ -1,0 +1,12 @@
+{
+  "tasks": {
+    "dev": "deno run --watch main.ts"
+  },
+  "imports": {
+    "@bukhalo/wol": "jsr:@bukhalo/wol@^2.0.1",
+    "@hk/wol": "jsr:@hk/wol@^0.1.4",
+    "@kunkun/api": "jsr:@kunkun/api@^0.0.52",
+    "@std/assert": "jsr:@std/assert@1"
+  },
+  "unstable": ["net"]
+}
