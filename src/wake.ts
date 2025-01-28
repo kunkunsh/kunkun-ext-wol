@@ -51,18 +51,14 @@ async function getRpcAPI() {
 
 class WakeOnLan extends WorkerExtension {
   private hosts: WakeOnLanHost[] = [];
-  private rpc?: {
-    api: API;
-    rpcChannel: RPCChannel<object, API>;
-    process: Child;
-    command: DenoCommand<string>;
-  };
 
-  onListItemSelected(name: string): Promise<void> {
+  async onListItemSelected(name: string): Promise<void> {
+    const rpc = await getRpcAPI();
+
     const host = this.hosts.find((host) => host.name === name);
     if (host) {
       console.log("host on list item selected", host);
-      this.rpc?.api
+      rpc?.api
         .wakeOnLan(host.mac, host.ip, host.port)
         .then(() => {
           toast.success("Host waked", {
@@ -73,13 +69,12 @@ class WakeOnLan extends WorkerExtension {
           toast.error("Failed to wake host", {
             description: err.message,
           });
+        })
+        .finally(() => {
+          rpc?.process.kill();
         });
     }
     return Promise.resolve();
-  }
-
-  async onBeforeGoBack(): Promise<void> {
-    this.rpc?.process.kill();
   }
 
   onActionSelected(value: string): Promise<void> {
@@ -104,7 +99,6 @@ class WakeOnLan extends WorkerExtension {
   }
 
   async load() {
-    this.rpc = await getRpcAPI();
     const hosts = await db.search({
       dataType: WakeOnLanHostType,
       fields: ["data", "search_text"],
