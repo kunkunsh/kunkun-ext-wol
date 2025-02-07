@@ -4,11 +4,11 @@ import {
   db,
   toast,
   ui,
-  WorkerExtension,
-} from "@kksh/api/ui/worker";
+  TemplateUiCommand,
+} from "@kksh/api/ui/template";
 import { WakeOnLanHost, WakeOnLanHostType } from "./models";
 
-class AddWakeOnLan extends WorkerExtension {
+class AddWakeOnLan extends TemplateUiCommand {
   async onFormSubmit(value: Record<string, any>): Promise<void> {
     console.log(value);
     const { name, mac, ip, port } = value;

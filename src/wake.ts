@@ -15,8 +15,8 @@ import {
   shell,
   toast,
   ui,
-  WorkerExtension,
-} from "@kksh/api/ui/worker";
+  TemplateUiCommand,
+} from "@kksh/api/ui/template";
 import * as v from "valibot";
 import type { API } from "./types";
 import { WakeOnLanHost, WakeOnLanHostType } from "./models";
@@ -49,7 +49,7 @@ async function getRpcAPI() {
   };
 }
 
-class WakeOnLan extends WorkerExtension {
+class WakeOnLan extends TemplateUiCommand {
   private hosts: WakeOnLanHost[] = [];
 
   async onListItemSelected(name: string): Promise<void> {

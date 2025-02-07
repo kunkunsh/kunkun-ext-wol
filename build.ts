@@ -1,6 +1,6 @@
 import { watch } from "fs";
 import { join } from "path";
-import { refreshTemplateWorkerExtension } from "@kksh/api/dev";
+import { refreshTemplateWorkerCommand } from "@kksh/api/dev";
 import { $ } from "bun";
 
 const entrypoints = ["./src/add.ts", "./src/wake.ts"];
@@ -8,10 +8,10 @@ const entrypoints = ["./src/add.ts", "./src/wake.ts"];
 async function build() {
   try {
     for (const entrypoint of entrypoints) {
-      await $`bun build --minify --target=browser --outdir=./dist ${entrypoint}`;
+      await $`bun build --target=browser --outdir=./dist ${entrypoint}`;
     }
     if (Bun.argv.includes("dev")) {
-      await refreshTemplateWorkerExtension();
+      await refreshTemplateWorkerCommand();
     }
   } catch (error) {
     console.error(error);
