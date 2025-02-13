@@ -8,6 +8,13 @@
     "type": "git",
     "url": "https://github.com/kunkunsh/kunkun-ext-wol"
   },
+  "files": [
+    "dist",
+    "deno-src",
+    "src/types.ts",
+    "README.md",
+    ".gitignore"
+  ],
   "kunkun": {
     "name": "Wake On Lan",
     "shortDescription": "Wake On Lan",
@@ -60,11 +67,5 @@
   },
   "peerDependencies": {
     "typescript": "^5.0.0"
-  },
-  "files": [
-    "dist",
-    "deno-src",
-    "README.md",
-    ".gitignore"
-  ]
+  }
 }
